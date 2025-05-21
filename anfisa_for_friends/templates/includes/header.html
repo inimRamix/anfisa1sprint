@@ -2,16 +2,21 @@
 <header>
   <img src="{% static 'img/logo.png' %}" height="50" alt="">
   <nav>
-    <ul>
-      <li>
-        <a href="{% url 'homepage:index' %}">Главная</a>  
-      </li>
-      <li>
-        <a href="{% url 'ice_cream:ice_cream_list' %}">Каталог мороженого</a>       
-      </li>
-      <li>
-        <a href="{% url 'about:description' %}">О проекте</a>
-      </li>
-    </ul>
+    {% with request.resolver_match.view_name as view_name %}
+      <ul>
+        <li class="nav-item">
+          <a class="nav-link {% if view_name == 'homepage:index' %}active{% endif %}"
+            href="{% url 'homepage:index' %}">
+            Главная
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'ice_cream:ice_cream_list' %}">Каталог мороженого</a>
+        </li>
+        <li>
+          <a href="{% url 'about:description' %}">О проекте</a>
+        </li>
+      </ul>
+    {% endwith %}
   </nav>
 </header>
